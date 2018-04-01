@@ -33,9 +33,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
 
-    <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+    <sick_lms1xx frame="laser" topic="${topic}" />
 
-    <link name="${prefix}_laser_mount">
+    <link name="laser_mount">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -46,14 +46,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </visual>
     </link>
 
-    <joint name="${prefix}_laser_joint" type="fixed">
+    <joint name="laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
       <origin xyz="0 0 0.149" rpy="0 0 0" />
-      <parent link="${prefix}_laser_mount" />
-      <child link="${prefix}_laser" />
+      <parent link="laser_mount" />
+      <child link="laser" />
     </joint>
 
-    <gazebo reference="${prefix}_laser_mount">
+    <gazebo reference="laser_mount">
       <material>Gazebo/DarkGrey</material>
     </gazebo>
 

@@ -22,11 +22,11 @@
     <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                        topic="$(optenv JACKAL_LASER_TOPIC scan)"/>
 
-    <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+    <joint name="laser_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
               rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
       <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
+      <child link="laser_mount" />
     </joint>
   </xacro:if>
 

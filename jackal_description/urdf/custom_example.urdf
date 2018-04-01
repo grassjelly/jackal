@@ -18,10 +18,10 @@
 
   <sick_lms1xx_mount prefix="front" topic="scan"/>
 
-  <joint name="front_laser_mount_joint" type="fixed">
+  <joint name="laser_mount_joint" type="fixed">
     <origin xyz="0 0 0.002" rpy="0 0 0" />
     <parent link="front_mount" />
-    <child link="front_laser_mount" />
+    <child link="laser_mount" />
   </joint>
 
   <camera_mount prefix="rear" tilt="0.5236"/>
