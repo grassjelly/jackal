@@ -5,6 +5,7 @@
         args="jackal_joint_publisher jackal_velocity_controller --shutdown-timeout 1" />
   
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+    <remap from="odometry/filtered" to="odom" />
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
   </node>
 
