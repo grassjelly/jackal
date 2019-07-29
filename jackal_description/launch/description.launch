@@ -8,10 +8,13 @@
                     --inorder" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-  <node pkg="image_proc" type="image_proc" name="image_rect" ns="camera/rgb"/>
 
-  <node pkg="topic_tools" type="relay" name="depth_registered_image" args="/camera/depth/camera_info /camera/depth_registered/camera_info"/>
-  <node pkg="topic_tools" type="relay" name="depth_registered_points" args="/camera/depth/image_raw /camera/depth_registered/image_raw"/>
-  <node pkg="topic_tools" type="relay" name="depth_registered_camera_info" args="/camera/depth/points /camera/depth_registered/points"/>
+  <group if="$(eval arg('config') == 'kinect' or arg('config') == 'hybrid')">
+    <node pkg="image_proc" type="image_proc" name="image_rect" ns="camera/rgb"/>
+
+    <node pkg="topic_tools" type="relay" name="depth_registered_image" args="/camera/depth/camera_info /camera/depth_registered/camera_info"/>
+    <node pkg="topic_tools" type="relay" name="depth_registered_points" args="/camera/depth/image_raw /camera/depth_registered/image_raw"/>
+    <node pkg="topic_tools" type="relay" name="depth_registered_camera_info" args="/camera/depth/points /camera/depth_registered/points"/>
+  </group>
 </launch>
 
