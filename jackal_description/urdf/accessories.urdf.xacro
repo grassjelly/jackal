@@ -142,4 +142,14 @@
       <child link="kinect_mount" />
     </joint>
   </xacro:if>
+
+  <xacro:if value="$(optenv JACKAL_VELODYNE 0)">
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/velodyne_mount.urdf.xacro" />
+    <velodyne_mount/>
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/> -->
+    <VLP-16 parent="velodyne_mount" name="velodyne" topic="/velodyne_points" hz="10" samples="1024" gpu="false" lasers="16" max_range="100">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </VLP-16>
+  </xacro:if>
+
 </robot>

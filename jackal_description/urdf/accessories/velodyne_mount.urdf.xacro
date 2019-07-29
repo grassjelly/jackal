@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="velodyne_mount">
+    <link name="velodyne_mount">
+      <visual>
+        <origin xyz="0 0 -0.28" rpy="0.0 0.0 0.0" />
+        <geometry>
+          <mesh filename="package://jackal_description/meshes/velodyne-bracket.stl" scale="0.01 0.01 0.01"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="velodyne_mount_joint" type="fixed">
+      <parent link="mid_mount"/>
+      <child link="velodyne_mount"/>
+      <origin xyz="0.0 0.0 0.28" rpy="0 0 0"/>
+    </joint>
+
+    <gazebo reference="velodyne_mount">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+  </xacro:macro>
+</robot>
