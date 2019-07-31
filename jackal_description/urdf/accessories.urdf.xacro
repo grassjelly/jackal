@@ -152,4 +152,28 @@
     </VLP-16>
   </xacro:if>
 
+  <xacro:if value="$(optenv JACKAL_PAN_TILT 0)">
+   <xacro:include filename="$(find jackal_description)/urdf/accessories/velodyne_mount.urdf.xacro" />
+    <xacro:include filename="$(find common_sensors)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" />
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/pan_tilt_mount.urdf.xacro" />
+    <velodyne_mount/>
+    <xacro:pan_tilt_mount parent="velodyne_mount">
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    </xacro:pan_tilt_mount>
+
+    <xacro:hokuyo_utm30lx 
+        name="hokuyo" 
+        parent="pan_tilt_mount_link" 
+        ros_topic="scan" 
+        update_rate="30" 
+        ray_count="1040" 
+        min_angle="130" 
+        max_angle="-130" >
+        <origin xyz="0.0 0.0 0.045" rpy="0 0 0"/>
+    </xacro:hokuyo_utm30lx>
+    <gazebo reference="hokuyo_frame">
+			<material>Gazebo/DarkGrey</material>
+		</gazebo>
+  </xacro:if>
+
 </robot>

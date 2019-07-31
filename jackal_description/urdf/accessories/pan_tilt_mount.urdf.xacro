@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:macro name="pan_tilt_mount" params="parent *origin">
+	    <joint name="pan_bracket_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="pan_bracket_link" />
+			<xacro:insert_block name="origin" />
+        </joint>
+		<link name="pan_bracket_link">
+			<visual>
+				<origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
+				<geometry>
+				<mesh filename="package://jackal_description/meshes/pan-bracket.stl" scale="0.01 0.01 0.01"/>
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
+				<geometry>
+				<mesh filename="package://jackal_description/meshes/pan-bracket.stl" scale="0.01 0.01 0.01"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.05" />
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<inertia ixx="2.632e-4" ixy="0" ixz="0" iyy="2.632e-4" iyz="0" izz="1.62e-4" />
+			</inertial>
+		</link>
+		<gazebo reference="pan_bracket_link">
+			<material>Gazebo/DarkGrey</material>
+		</gazebo>
+
+	    <joint name="pan_tilt_mount_joint" type="revolute">
+            <axis xyz="0 1 0" />
+            <limit effort="25" lower="-${pi}" upper="${pi}" velocity="1.5" />
+            <parent link="pan_bracket_link" />
+            <child link="pan_tilt_mount_link" />
+			<origin xyz="0 0 0.02" rpy="0 0 0"/>
+        </joint>
+		<link name="pan_tilt_mount_link">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.07 0.07 0.001"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.07 0.07 0.001"/>
+				</geometry>
+			</visual>
+     		<inertial>
+                <mass value="0.1" />
+                <inertia ixx="${(1/12) * 0.1 * (0.07 * 0.07 + 0.001 * 0.001)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * 0.1 * (0.07 * 0.07 + 0.001 * 0.001)}" iyz="0.0"
+                         izz="${(1/12) * 0.1 * (0.07 * 0.07 + 0.07 * 0.07)}" />
+            </inertial>
+		</link>
+		<gazebo reference="pan_tilt_mount_link">
+			<material>Gazebo/DarkGrey</material>
+		</gazebo>
+
+        <transmission name="pan_tilt_mount_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="pan_tilt_mount_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="pan_tilt_mount_joint_motor">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+	</xacro:macro>
+</robot>
