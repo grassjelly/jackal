@@ -154,7 +154,7 @@
 
   <xacro:if value="$(optenv JACKAL_PAN_TILT 0)">
    <xacro:include filename="$(find jackal_description)/urdf/accessories/velodyne_mount.urdf.xacro" />
-    <xacro:include filename="$(find common_sensors)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" />
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_utm30lx.urdf.xacro" />
     <xacro:include filename="$(find jackal_description)/urdf/accessories/pan_tilt_mount.urdf.xacro" />
     <velodyne_mount/>
     <xacro:pan_tilt_mount parent="velodyne_mount">
