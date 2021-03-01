@@ -24,7 +24,7 @@
   <gazebo>
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
       <updateRate>40</updateRate>
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace></robotNamespace>
       <bodyName>navsat_link</bodyName>
       <frameId>base_footprint</frameId>
       <topicName>/navsat/fix</topicName>
