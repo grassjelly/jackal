@@ -2,7 +2,7 @@
 #
 frequency: 50
 
-odom0: /jackal_velocity_controller/odom
+odom0: jackal_velocity_controller/odom
 odom0_config: [false, false, false,
                false, false, false,
                true, true, true,
@@ -10,7 +10,7 @@ odom0_config: [false, false, false,
                false, false, false]
 odom0_differential: false
 
-imu0: /imu/data
+imu0: imu/data
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
