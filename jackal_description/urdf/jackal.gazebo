@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-<robot>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="jackal">
+  
+  <xacro:arg name="tf_prefix" default=""/>
+
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
     </plugin>
@@ -7,6 +11,7 @@
 
   <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+      <frameId>$(arg tf_prefix)/base_footprint</frameId>
       <updateRate>50.0</updateRate>
       <bodyName>imu_link</bodyName>
       <topicName>imu/data</topicName>
@@ -21,9 +26,9 @@
 
   <gazebo>
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <frameId>$(arg tf_prefix)/base_footprint</frameId>
       <updateRate>40</updateRate>
       <bodyName>navsat_link</bodyName>
-      <frameId>base_footprint</frameId>
       <topicName>navsat/fix</topicName>
       <velocityTopicName>/navsat/vel</velocityTopicName>
       <referenceLatitude>49.9</referenceLatitude>
@@ -34,7 +39,7 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="base_footprint">
+  <gazebo reference="base_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
