@@ -1,5 +1,9 @@
 <launch>
+  <arg name="tf_prefix" default="" />
+
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
+
+  <param name="/$(arg tf_prefix)/jackal_velocity_controller/base_frame_id" value="$(arg tf_prefix)/base_footprint" />
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller pan_tilt_position_controller --shutdown-timeout 1" />
