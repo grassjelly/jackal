@@ -11,7 +11,7 @@
 
   <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-      <frameId>$(arg tf_prefix)/base_footprint</frameId>
+      <frameId>$(arg tf_prefix)base_footprint</frameId>
       <updateRate>50.0</updateRate>
       <bodyName>imu_link</bodyName>
       <topicName>imu/data</topicName>
@@ -26,7 +26,7 @@
 
   <gazebo>
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
-      <frameId>$(arg tf_prefix)/base_footprint</frameId>
+      <frameId>$(arg tf_prefix)base_footprint</frameId>
       <updateRate>40</updateRate>
       <bodyName>navsat_link</bodyName>
       <topicName>navsat/fix</topicName>
