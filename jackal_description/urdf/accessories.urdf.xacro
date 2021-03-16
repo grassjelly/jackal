@@ -23,8 +23,8 @@
                        topic="$(optenv JACKAL_LASER_TOPIC scan)"/>
 
     <joint name="laser_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
-              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0.15 0 -0.03)"
+              rpy="$(optenv JACKAL_LASER_RPY 3.1416 0 0)" />
       <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
       <child link="laser_mount" />
     </joint>
