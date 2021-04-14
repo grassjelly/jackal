@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
 
-    <sick_lms1xx frame="laser" topic="${topic}" robot_namespace=""  min_angle="-1.74533" max_angle="1.74533"/>
+    <xacro:sick_lms1xx frame="laser" topic="${topic}" robot_namespace=""  min_angle="-1.74533" max_angle="1.74533"/>
 
     <link name="laser_mount">
       <visual>
